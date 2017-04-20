@@ -84,10 +84,15 @@ const diagWin2 = [
 
 // Check if a given space is within a given diagonal win array.
 function inDiagonalWin(diagArr, test) {
-  if (
-    (diagArr.findIndex(item => item.row === parseInt(test.row, 10)) > -1) &&
-    (diagArr.findIndex(item => item.col === parseInt(test.col, 10)) > -1)
-  ) {
+  // Get the index of the diagonal win array where the test's row matches.
+  const rowIdx = diagArr.findIndex(item => item.row === parseInt(test.row, 10));
+
+  // Get the index of the diagonal win array where the test's column matches.
+  const colIdx = diagArr.findIndex(item => item.col === parseInt(test.col, 10));
+
+  if ((rowIdx > -1) && (colIdx === rowIdx)) {
+    // If the index of the row test is present and equal to the column index,
+    // return true.
     return true;
   }
 
@@ -126,12 +131,12 @@ function winCheck(player, arr) {
     if (checks[currRow] === 3 || checks[currCol] === 3) {
       // If a row or column has been filled, trigger a win.
       triggerWin(player);
-    } else if (inDiagonalWin(diagWin1, mark)) {
+    } else if (inDiagonalWin(diagWin1, mark) || inDiagonalWin(diagWin2, mark)) {
       // If progress is made toward the first diagonal win, mark progress.
-      diagWinner1 += 1;
-    } else if (inDiagonalWin(diagWin2, mark)) {
+      if (inDiagonalWin(diagWin1, mark)) { diagWinner1 += 1; }
+
       // If progress is made toward the second diagonal win, mark progress.
-      diagWinner2 += 1;
+      if (inDiagonalWin(diagWin2, mark)) { diagWinner2 += 1; }
     }
   });
 
