@@ -1,0 +1,35 @@
+.board {
+  width: 40rem;
+  height: 40rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  position: relative;
+}
+
+.board__space {
+  border: 1px solid darkblue;
+  background-color: lightskyblue;
+  font-size: 6rem;
+  grid-area: 1fr/1fr;
+}
+
+.board__space[disabled] {
+  background-color: lightblue;
+}
+
+.board__message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: darkred;
+  color: ivory;
+  font-size: 6rem;
+}
+
+.is-hidden {
+  display: none;
+}
