@@ -23,37 +23,42 @@ class Player {
 
 // Initializes the game.
 function startGame() {
+  // Remove disabled state from board space buttons.
   spaces.forEach((space) => {
     space.removeAttribute('disabled');
   });
 
+  // Disable the starter and enable the reset button.
   resetter.removeAttribute('disabled');
   starter.setAttribute('disabled', 'true');
 
+  // Create new players.
   player1 = new Player('one', 'x');
   player2 = new Player('two', 'o');
 }
 
 // Resets the game.
 function resetGame() {
+  // Disable the board spaces, removing their data-played attribute and text
+  // content.
   spaces.forEach((space) => {
     space.setAttribute('disabled', 'true');
-
-    // Add the player's symbol to the space played as data value and content.
     space.removeAttribute('data-played');
     /* eslint-disable no-param-reassign */
     space.innerHTML = '';
     /* eslint-enable no-param-reassign */
   });
 
+  // Reset each player's moves and the turn count.
   player1.moves = [];
   player2.moves = [];
-
   turn = 0;
 
+  // Reset the game message to be empty and hidden.
   message.textContent = '';
   message.classList.add('is-hidden');
 
+  // Enable the start button and disable the reset button.
   starter.removeAttribute('disabled');
   resetter.setAttribute('disabled', 'true');
 }
