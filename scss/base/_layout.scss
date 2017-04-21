@@ -1,0 +1,23 @@
+// Main layout
+.l-container {
+  @include margin(null auto);
+  @include padding(null ($gutter / 2));
+  width: 100%;
+  max-width: $max-width;
+}
+
+// Sticky footer layout
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  > header,
+  > footer { flex-grow: 0; }
+
+  > main { flex-grow: 1; }
+}

@@ -1,0 +1,20 @@
+// Buttons
+button,
+input[type="submit"] {
+  display: inline-block;
+  padding: .5em .75em;
+  border: 1px solid;
+  border-radius: .3em;
+  background-color: $background-color;
+  color: $link-color;
+  font-size: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  @include haf {
+    border: $linked-border;
+    background: $link-color;
+    color: $background-color;
+    text-decoration: none;
+  }
+}

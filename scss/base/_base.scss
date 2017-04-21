@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  color: inherit;
+  font-family: inherit;
+  line-height: inherit;
+
+  + * { margin-top: $gutter-vertical; }
+}
+
+body,
+br,
+li,
+dt,
+dd,
+th,
+td,
+option {
+  margin-top: 0;
+}
+
+html {
+  background: $background-color;
+  color: $text-color;
+  font-family: $font-family-main;
+  font-size: $em-base;
+  line-height: $line-height-base;
+}
+
+body { font-size: $font-size-base; }
+
+h1,
+h2,
+h3 {
+  font-family: $font-family-headings;
+  font-weight: 800;
+}
+
+h1 { font-size: $font-size-h1; }
+
+h2 { font-size: $font-size-h2; }
+
+h3 { font-size: $font-size-h3; }
+
+a {
+  color: $link-color;
+  text-decoration-style: dashed;
+
+  @include haf {
+    color: $link-color-hover;
+    text-decoration-style: solid;
+  }
+
+  %dark-theme & {
+    color: inherit;
+
+    &:hover {
+      outline: 1px solid currentColor;
+      text-decoration-line: none;
+    }
+  }
+}
+
+input,
+select {
+  padding: .5em;
+  border: $form-border;
+  font-size: inherit;
+}

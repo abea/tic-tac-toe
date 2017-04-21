@@ -1,0 +1,33 @@
+.board {
+  @include size($content-width);
+  display: grid;
+  position: relative;
+  max-width: 80vw;
+  max-height: 80vw;
+  margin: 0 auto;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
+  * { margin-top: 0; }
+}
+
+.board__space {
+  border: 1px solid $color-secondary;
+  background-color: $gray-10;
+  font-size: $font-size-h1;
+
+  &[disabled] {
+    background-color: $gray-20;
+  }
+}
+
+.board__message {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: $color-primary-dark;
+  color: $white;
+  font-size: $font-size-h1;
+}

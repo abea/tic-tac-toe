@@ -1,0 +1,11 @@
+// States
+.is-disabled,
+[disabled] {
+  opacity: .7;
+}
+
+.is-hidden {
+  // Allow !important on utility and state classes.
+  // scss-lint:disable ImportantRule
+  display: none !important;
+}
