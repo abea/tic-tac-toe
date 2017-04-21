@@ -3,7 +3,7 @@
   @include margin(null auto);
   @include padding(null ($gutter / 2));
   width: 100%;
-  max-width: $max-width;
+  max-width: $content-width;
 }
 
 // Sticky footer layout

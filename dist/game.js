@@ -16,6 +16,26 @@ var resetter = document.getElementById('reset');
 var spaces = document.querySelectorAll('.board__space');
 // Identify the board message element.
 var message = document.querySelector('.board__message');
+// Identify the instructional region.
+var intro = document.getElementById('intro');
+
+var instructions = ['Your goal is to fill a full row, column or major diagonal with your marker. Press "Start" to start the game.', 'Player one, click a space in the grid to make your mark.', 'Player two, it\'s your turn. click a space to make your mark.', 'Continue going back and forth until someone wins(💥) or all spaces are full.'];
+
+function updateIntro(stage) {
+  switch (stage) {
+    case 0:
+      intro.textContent = instructions[1];
+      break;
+    case 1:
+      intro.textContent = instructions[2];
+      break;
+    case 2:
+      intro.textContent = instructions[3];
+      break;
+    default:
+      break;
+  }
+}
 
 // Creates a player class to be used once the game begins. Each player has a
 // name, symbol, and array of moves they have made.
@@ -44,6 +64,9 @@ function startGame() {
   // Create new players.
   player1 = new Player('one', 'x');
   player2 = new Player('two', 'o');
+
+  // Update the introduction text.
+  updateIntro(turn);
 }
 
 // Resets the game.
@@ -66,6 +89,9 @@ function resetGame() {
   // Reset the game message to be empty and hidden.
   message.textContent = '';
   message.classList.add('is-hidden');
+
+  // Reset the instructions.
+  intro.textContent = instructions[0];
 
   // Enable the start button and disable the reset button.
   starter.removeAttribute('disabled');
@@ -203,6 +229,9 @@ function makeMove() {
 
   // Increment the turn one higher.
   turn += 1;
+
+  // Update the instructions area.
+  updateIntro(turn);
 
   // Check which player has played based on number of turns.
   if (turn % 2 !== 0) {
