@@ -27,10 +27,39 @@ module.exports = function gruntConfig(grunt) {
         src: './styles.css',
       },
     },
+    eslint: {
+      options: {
+        configFile: '.eslintrc',
+      },
+      target: ['./src/**/*.js'],
+    },
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015'],
+      },
+      dist: {
+        files: {
+          'dist/game.js': 'src/game.js',
+        },
+      },
+    },
+    uglify: {
+      my_target: {
+        files: {
+          'dist/game.min.js': ['dist/game.js'],
+        },
+      },
+    },
     watch: {
       scss: {
         files: ['**/*.scss'],
         tasks: ['sass', 'postcss'],
+        options: {},
+      },
+      scripts: {
+        files: ['src/**/*.js'],
+        tasks: ['eslint', 'babel', 'uglify'],
         options: {},
       },
     },
@@ -38,8 +67,12 @@ module.exports = function gruntConfig(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
+  grunt.registerTask('scripts', ['eslint', 'babel', 'uglify']);
   grunt.registerTask('scss', ['sass', 'postcss']);
   grunt.registerTask('default', ['watch']);
 };

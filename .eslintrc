@@ -1,0 +1,17 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jquery": true,
+  },
+  "extends": "airbnb",
+  "rules": {
+    "quotes": 1,
+    no-console: [1, { allow: ["warn", "error"] }],
+    "space-before-function-paren": 0,
+    "comma-dangle": 1,
+    "prefer-arrow-callback": 1,
+    "padded-blocks": 1,
+    "strict": 0,
+  }
+}
