@@ -1,0 +1,82 @@
+linters:
+# See the Github scss-lint project readme (scss-lint/lib/scss_lint/linter/README.md) for more.
+  BemDepth:
+    # BEM rules shouldn't have more than two additional levels.
+    # Bad: .block__section--blue__title
+    # Good: .block__section--blue, .block__section__title
+    max_elements: 2
+
+  DisableLinterReason:
+    # scss-lint:disable control comments should be preceded by an explanation.
+    # Example:
+    # // We really prefer `border: none` in this file, for reasons.
+    # // scss-lint:disable BorderZero
+    enabled: true
+
+  DuplicateProperty:
+    # Turns off the duplicate property warning to allow for settingf fallbacks.
+    # Example:
+    # .block {
+    #   color: $blue;
+    #   color: rgba($blue, .8);
+    # }
+    enabled: false
+
+  NameFormat:
+    # Sass functions should be named with camelCase to differentiate from
+    # mixins.
+    function_convention: camel_case
+
+  PlaceholderInExtend:
+    # @extend declarations should use specific '%' prefixed selectors.
+    # This helps to avoid unintentional exponential increase in CSS size.
+    enabled: true
+
+  PropertySortOrder:
+    # Uses the smacss preset for rule property order based on
+    # http://smacss.com/book/formatting.
+    order: smacss
+
+  QualifyingElement:
+    # Allows using qualifying selectors for attributes. This is most used with
+    # inputs, e.g., `input[type="text"]`
+    allow_element_with_attribute: true
+
+  SelectorFormat:
+    # Uses the hyphenated BEM style with double underscore before elements and
+    # double dashes before modifiers. e.g., `.block__element--modifier`
+    convention: hyphenated_BEM
+
+  SpaceAfterPropertyColon:
+    # Allows more than one space after property colons to let you align
+    # subsequent properties that are helpful to view together.
+    # Example:
+    # .block {
+    #   top:   10px;
+    #   right:  9px;
+    #   bottom: 8px;
+    #   left:   7px;
+    # }
+    style: at_least_one_space
+
+  SpaceBeforeBrace:
+    # Allows for single line rules where they make sense.
+    # Example:
+    # .icon-chevron-up    { &:before { content: "\e030"; } }
+    # .icon-chevron-down  { &:before { content: "\e031"; } }
+    allow_single_line_padding: true
+
+  StringQuotes:
+    enabled: true
+    # String quotes should be consistently written with double quotes. A matter
+    # of preference.
+    style: double_quotes # or single_quotes
+
+  VariableForProperty:
+    enabled: true
+    # Variables should always be used for the following properties rather
+    # than discrete values. This makes for very maintainable Sass.
+    properties:
+      - color
+      - font
+      - font-size
