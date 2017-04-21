@@ -6,7 +6,7 @@ module.exports = function gruntConfig(grunt) {
           style: 'compressed',
         },
         files: {
-          './styles.css': './scss/styles.scss',
+          './styles.min.css': './scss/styles.scss',
         },
       },
     },
@@ -24,7 +24,7 @@ module.exports = function gruntConfig(grunt) {
         ],
       },
       dist: {
-        src: './styles.css',
+        src: './styles.min.css',
       },
     },
     eslint: {
