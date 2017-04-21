@@ -13,7 +13,7 @@ input[type="submit"] {
 
   @include haf {
     border: $linked-border;
-    background: $link-color;
+    background-color: $link-color;
     color: $background-color;
     text-decoration: none;
   }
@@ -21,5 +21,15 @@ input[type="submit"] {
   &[disabled] {
     background-color: $gray-20;
     color: inherit;
+    pointer-events: none;
+  }
+}
+
+.button-positive {
+  border-color: $color-pos;
+  color: $color-pos;
+
+  @include haf {
+    background-color: $color-pos;
   }
 }
