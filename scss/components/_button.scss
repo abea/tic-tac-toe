@@ -17,4 +17,9 @@ input[type="submit"] {
     color: $background-color;
     text-decoration: none;
   }
+
+  &[disabled] {
+    background-color: $gray-20;
+    color: inherit;
+  }
 }

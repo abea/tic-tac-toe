@@ -1,32 +1,32 @@
 .board {
   @include size($content-width);
+  @include margin(null auto);
   display: grid;
   position: relative;
   max-width: 80vw;
   max-height: 80vw;
-  margin: 0 auto;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 
   * { margin-top: 0; }
 }
 
 .board__space {
-  border: 1px solid $color-secondary;
+  border-radius: 0;
+  border-color: $color-secondary;
   background-color: $gray-10;
-  font-size: $font-size-h1;
+  $font-size-h3: 1.5rem;
 
-  &[disabled] {
-    background-color: $gray-20;
-  }
+  @media (min-width: $bp-palm) { font-size: $font-size-h2; }
+  @media (min-width: $bp-hands) { font-size: $font-size-h1; }
+  @media (min-width: $bp-hands-wide) { font-size: $font-size-super; }
 }
 
 .board__message {
+  @include size(100%);
   display: flex;
   position: absolute;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
   background-color: $color-primary-dark;
   color: $white;
   font-size: $font-size-h1;

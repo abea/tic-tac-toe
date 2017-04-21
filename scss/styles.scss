@@ -1,7 +1,7 @@
 // External resources
 // **********
 @import "vendor/normalize";
-// Bourbon mixins
+// Bourbon mixins. No styles, only helpers.
 @import "vendor/bourbon/bourbon";
 
 // Variables
@@ -12,6 +12,7 @@
 // **********
 @import "utilities/mixins";
 @import "utilities/state";
+@import "utilities/utilities";
 
 // Base
 // *****
