@@ -9,8 +9,9 @@ var turn = 0;
 var player1 = {};
 var player2 = {};
 
-// Identify the starter button.
+// Identify the starter and reset buttons.
 var starter = document.getElementById('starter');
+var resetter = document.getElementById('reset');
 // Identify each of the spaces on the board.
 var spaces = document.querySelectorAll('.board__space');
 // Identify the board message element.
@@ -35,15 +36,43 @@ function startGame() {
     space.removeAttribute('disabled');
   });
 
+  resetter.removeAttribute('disabled');
   starter.setAttribute('disabled', 'true');
 
   player1 = new Player('one', 'x');
   player2 = new Player('two', 'o');
 }
 
+// Resets the game.
+function resetGame() {
+  spaces.forEach(function (space) {
+    space.setAttribute('disabled', 'true');
+
+    // Add the player's symbol to the space played as data value and content.
+    space.removeAttribute('data-played');
+    /* eslint-disable no-param-reassign */
+    space.innerHTML = '';
+    /* eslint-enable no-param-reassign */
+  });
+
+  player1.moves = [];
+  player2.moves = [];
+
+  turn = 0;
+
+  message.textContent = '';
+  message.classList.add('is-hidden');
+
+  starter.removeAttribute('disabled');
+  resetter.setAttribute('disabled', 'true');
+}
+
 // Initialize the game when the starter is clicked.
 starter.addEventListener('click', function () {
   startGame();
+});
+resetter.addEventListener('click', function () {
+  resetGame();
 });
 
 // Activates the "Game Over" result.
