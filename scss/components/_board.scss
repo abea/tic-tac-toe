@@ -30,4 +30,6 @@
   background-color: $color-primary-dark;
   color: $white;
   font-size: $font-size-h1;
+
+  &.is-good { background-color: $color-secondary; }
 }

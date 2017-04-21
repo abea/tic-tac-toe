@@ -89,6 +89,7 @@ function resetGame() {
   // Reset the game message to be empty and hidden.
   message.textContent = '';
   message.classList.add('is-hidden');
+  message.classList.remove('is-good');
 
   // Reset the instructions.
   intro.textContent = instructions[0];
@@ -115,6 +116,7 @@ function gameOver() {
 // Activates the "Win" result, based on the player.
 function triggerWin(player) {
   message.textContent = 'Player ' + player.name + ' wins!';
+  message.classList.add('is-good');
   message.classList.remove('is-hidden');
 
   spaces.forEach(function (space) {
