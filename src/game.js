@@ -4,6 +4,9 @@ let player1 = {};
 let player2 = {};
 let winner;
 
+// Set the grid length value.
+const gridLength = 3;
+
 // Identify the starter and reset buttons.
 const starter = document.getElementById('starter');
 const resetter = document.getElementById('reset');
@@ -120,36 +123,30 @@ function triggerWin(player) {
   });
 }
 
-// Identify the two possible diagonal wins.
-const diagWin1 = [
-  {
-    row: 1,
-    col: 1,
-  },
-  {
-    row: 2,
-    col: 2,
-  },
-  {
-    row: 3,
-    col: 3,
-  },
-];
+// Set up records of possible wins.
+const diagWin1 = [];
+const diagWin2 = [];
+const rowOrCol = {};
 
-const diagWin2 = [
-  {
-    row: 3,
-    col: 1,
-  },
-  {
-    row: 2,
-    col: 2,
-  },
-  {
-    row: 1,
-    col: 3,
-  },
-];
+// Populate win scenarios based on the grid length.
+function setWins (num) {
+  for (let i = 1; i < (num + 1); i += 1) {
+    diagWin1.push({
+      row: i,
+      col: i,
+    });
+
+    diagWin2.push({
+      row: num - (i - 1),
+      col: i,
+    });
+
+    rowOrCol[`row${i}`] = 0;
+    rowOrCol[`col${i}`] = 0;
+  }
+}
+
+setWins(gridLength);
 
 // Check if a given space is within a given diagonal win array.
 function inDiagonalWin(diagArr, test) {
@@ -174,18 +171,11 @@ function winCheck(player, arr) {
   const marks = [...arr];
 
   // Object to record instances of moves within each row and column.
-  const checks = {
-    row1: 0,
-    row2: 0,
-    row3: 0,
-    col1: 0,
-    col2: 0,
-    col3: 0,
-  };
+  const checks = Object.assign({}, rowOrCol);
 
   // Variables to record progress toward a diagonal win.
-  let diagWinner1 = 0;
-  let diagWinner2 = 0;
+  let diagWinCount1 = 0;
+  let diagWinCount2 = 0;
 
   // Check each marked space within the player's moves for progress.
   marks.forEach((mark) => {
@@ -197,19 +187,19 @@ function winCheck(player, arr) {
     checks[currRow] += 1;
     checks[currCol] += 1;
 
-    if (checks[currRow] === 3 || checks[currCol] === 3) {
+    if (checks[currRow] === gridLength || checks[currCol] === gridLength) {
       // If a row or column has been filled, trigger a win.
       triggerWin(player);
     } else if (inDiagonalWin(diagWin1, mark) || inDiagonalWin(diagWin2, mark)) {
       // If progress is made toward the first diagonal win, mark progress.
-      if (inDiagonalWin(diagWin1, mark)) { diagWinner1 += 1; }
+      if (inDiagonalWin(diagWin1, mark)) { diagWinCount1 += 1; }
 
       // If progress is made toward the second diagonal win, mark progress.
-      if (inDiagonalWin(diagWin2, mark)) { diagWinner2 += 1; }
+      if (inDiagonalWin(diagWin2, mark)) { diagWinCount2 += 1; }
     }
   });
 
-  if (diagWinner1 === 3 || diagWinner2 === 3) {
+  if (diagWinCount1 === gridLength || diagWinCount2 === gridLength) {
     // If a diagonal win scenario is fulfilled, trigger a win.
     triggerWin(player);
   }
