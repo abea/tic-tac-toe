@@ -23,8 +23,13 @@ var intro = document.getElementById('intro');
 // Set the grid length value.
 var gridLength = Math.sqrt(spaces.length);
 
+// Set up the instructions to be shown througout the game.
 var instructions = ['Your goal is to fill a full row, column or major diagonal with your marker. Press "Start" to start the game.', 'Player one, click a space in the grid to make your mark.', 'Player two, it\'s your turn. click a space to make your mark.', 'Continue going back and forth until someone wins(💥) or all spaces are full.'];
 
+intro.textContent = instructions[0];
+
+// Set the displayed instructions based on the turn of the game. Once the final
+// instruction is shown we leave that in place.
 function updateIntro(stage) {
   switch (stage) {
     case 0:
