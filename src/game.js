@@ -1,7 +1,8 @@
-// Establish the "empty" states for the turn and players.
+// Establish the "empty" states for the turn, players, and eventual winner.
 let turn = 0;
 let player1 = {};
 let player2 = {};
+let winner;
 
 // Identify the starter and reset buttons.
 const starter = document.getElementById('starter');
@@ -77,9 +78,10 @@ function resetGame() {
     /* eslint-enable no-param-reassign */
   });
 
-  // Reset each player's moves and the turn count.
+  // Reset each player's moves, the winner, and the turn count.
   player1.moves = [];
   player2.moves = [];
+  winner = undefined;
   turn = 0;
 
   // Reset the game message to be empty and hidden.
@@ -103,14 +105,12 @@ resetter.addEventListener('click', () => { resetGame(); });
 function gameOver() {
   message.textContent = 'Game Over';
   message.classList.remove('is-hidden');
-
-  if (message.classList.contains('is-good')) {
-    message.classList.remove('is-good');
-  }
 }
 
 // Activates the "Win" result, based on the player.
 function triggerWin(player) {
+  winner = player;
+
   message.textContent = `Player ${player.name} wins!`;
   message.classList.add('is-good');
   message.classList.remove('is-hidden');
@@ -252,7 +252,7 @@ function makeMove() {
   winCheck(currentPlayer, currentPlayer.moves);
 
   // If the player has not won and all spaces are filled, declare game over.
-  if (turn === spaces.length) { gameOver(); }
+  if (turn === spaces.length && !winner) { gameOver(); }
 }
 
 // Add event listeners for the spaces on the board.

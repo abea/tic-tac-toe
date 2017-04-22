@@ -4,10 +4,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Establish the "empty" states for the turn and players.
+// Establish the "empty" states for the turn, players, and eventual winner.
 var turn = 0;
 var player1 = {};
 var player2 = {};
+var winner = void 0;
 
 // Identify the starter and reset buttons.
 var starter = document.getElementById('starter');
@@ -81,9 +82,10 @@ function resetGame() {
     /* eslint-enable no-param-reassign */
   });
 
-  // Reset each player's moves and the turn count.
+  // Reset each player's moves, the winner, and the turn count.
   player1.moves = [];
   player2.moves = [];
+  winner = undefined;
   turn = 0;
 
   // Reset the game message to be empty and hidden.
@@ -115,6 +117,8 @@ function gameOver() {
 
 // Activates the "Win" result, based on the player.
 function triggerWin(player) {
+  winner = player;
+
   message.textContent = 'Player ' + player.name + ' wins!';
   message.classList.add('is-good');
   message.classList.remove('is-hidden');
@@ -256,7 +260,7 @@ function makeMove() {
   winCheck(currentPlayer, currentPlayer.moves);
 
   // If the player has not won and all spaces are filled, declare game over.
-  if (turn === spaces.length) {
+  if (turn === spaces.length && !winner) {
     gameOver();
   }
 }
