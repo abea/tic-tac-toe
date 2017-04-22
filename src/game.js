@@ -4,9 +4,6 @@ let player1 = {};
 let player2 = {};
 let winner;
 
-// Set the grid length value.
-const gridLength = 3;
-
 // Identify the starter and reset buttons.
 const starter = document.getElementById('starter');
 const resetter = document.getElementById('reset');
@@ -16,6 +13,9 @@ const spaces = document.querySelectorAll('.board__space');
 const message = document.querySelector('.board__message');
 // Identify the instructional region.
 const intro = document.getElementById('intro');
+
+// Set the grid length value.
+const gridLength = Math.sqrt(spaces.length);
 
 const instructions = [
   'Your goal is to fill a full row, column or major diagonal with your marker. Press "Start" to start the game.',

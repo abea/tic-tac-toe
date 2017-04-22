@@ -10,9 +10,6 @@ var player1 = {};
 var player2 = {};
 var winner = void 0;
 
-// Set the grid length value.
-var gridLength = 3;
-
 // Identify the starter and reset buttons.
 var starter = document.getElementById('starter');
 var resetter = document.getElementById('reset');
@@ -22,6 +19,9 @@ var spaces = document.querySelectorAll('.board__space');
 var message = document.querySelector('.board__message');
 // Identify the instructional region.
 var intro = document.getElementById('intro');
+
+// Set the grid length value.
+var gridLength = Math.sqrt(spaces.length);
 
 var instructions = ['Your goal is to fill a full row, column or major diagonal with your marker. Press "Start" to start the game.', 'Player one, click a space in the grid to make your mark.', 'Player two, it\'s your turn. click a space to make your mark.', 'Continue going back and forth until someone wins(💥) or all spaces are full.'];
 
