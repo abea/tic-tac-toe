@@ -5,12 +5,14 @@
   position: relative;
   max-width: 80vw;
   max-height: 80vw;
+  box-shadow: 0 0 1rem .5rem $gray-20;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 
   * { margin-top: 0; }
 }
 
 .board__space {
+  transition: background-color .25s, transform .25s;
   border-radius: 0;
   border-color: $color-secondary;
   background-color: $gray-10;
@@ -19,6 +21,11 @@
   @media (min-width: $bp-palm) { font-size: $font-size-h2; }
   @media (min-width: $bp-hands) { font-size: $font-size-h1; }
   @media (min-width: $bp-hands-wide) { font-size: $font-size-super; }
+
+  @include haf {
+    z-index: 1;
+    transform: scale(1.125);
+  }
 }
 
 .board__message {
