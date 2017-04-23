@@ -98,9 +98,11 @@ function resetGame() {
   turn = 0;
 
   // Reset the game message to be empty and hidden.
-  message.textContent = '';
+  message.innerHTML = '';
   message.classList.add('is-hidden');
   message.classList.remove('is-good');
+  // Hide the turn message.
+  turnMsg.classList.add('is-hidden');
 
   // Reset the instructions.
   intro.textContent = instructions[0];
@@ -116,8 +118,10 @@ resetter.addEventListener('click', () => { resetGame(); });
 
 // Activates the "Game Over" result.
 function gameOver() {
-  message.textContent = 'Game Over';
+  // Show the game message and show "game over" message.
+  message.innerHTML = 'No winner...<br />Game Over';
   message.classList.remove('is-hidden');
+  // Hide the turn message.
   turnMsg.classList.add('is-hidden');
 }
 
@@ -125,7 +129,7 @@ function gameOver() {
 function triggerWin(player) {
   winner = player;
 
-  message.textContent = `Player ${player.name} wins!`;
+  message.innerHTML = `Player ${player.name} wins!`;
   message.classList.add('is-good');
   message.classList.remove('is-hidden');
   turnMsg.classList.add('is-hidden');
