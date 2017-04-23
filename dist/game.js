@@ -71,8 +71,8 @@ function startGame() {
   starter.setAttribute('disabled', 'true');
 
   // Create new players.
-  player1 = new Player('one', 'x');
-  player2 = new Player('two', 'o');
+  player1 = new Player('one', '✕');
+  player2 = new Player('two', '○');
 
   // Update the introduction text.
   updateIntro(turn);
@@ -80,11 +80,10 @@ function startGame() {
 
 // Resets the game.
 function resetGame() {
-  // Disable the board spaces, removing their data-played attribute and text
+  // Disable the board spaces, removing their text
   // content.
   spaces.forEach(function (space) {
     space.setAttribute('disabled', 'true');
-    space.removeAttribute('data-played');
     /* eslint-disable no-param-reassign */
     space.innerHTML = '';
     /* eslint-enable no-param-reassign */
@@ -252,8 +251,7 @@ function makeMove() {
   // Add the space played to the player's moves array.
   currentPlayer.moves.push(spaceValue);
 
-  // Add the player's symbol to the space played as data value and content.
-  this.dataset.played = currentPlayer.symbol;
+  // Add the player's symbol to the space played.
   this.textContent = currentPlayer.symbol.toUpperCase();
 
   // Disable the space once played.
