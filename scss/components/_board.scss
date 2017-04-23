@@ -1,22 +1,30 @@
 .board {
   @include size($content-width);
   @include margin(null auto);
-  display: grid;
+  display: flex;
   position: relative;
+  flex-wrap: wrap;
   max-width: 80vw;
   max-height: 80vw;
   box-shadow: 0 0 1rem .5rem $gray-20;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
+  @supports(display: grid) {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  }
 
   * { margin-top: 0; }
 }
 
 .board__space {
+  flex-basis: calc(100%/3);
+  padding: 0;
   transition: background-color .25s, transform .25s;
   border-radius: 0;
   border-color: $color-secondary;
   background-color: $gray-10;
   $font-size-h3: 1.5rem;
+  line-height: 0;
 
   @media (min-width: $bp-palm) { font-size: $font-size-h2; }
   @media (min-width: $bp-hands) { font-size: $font-size-h1; }
