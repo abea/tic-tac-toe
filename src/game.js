@@ -13,6 +13,8 @@ const spaces = document.querySelectorAll('.board__space');
 const message = document.querySelector('.board__message');
 // Identify the instructional region.
 const intro = document.getElementById('intro');
+// Identify the turn message element.
+const turnMsg = document.getElementById('turn-message');
 
 // Set the grid length value.
 const gridLength = Math.sqrt(spaces.length);
@@ -70,6 +72,10 @@ function startGame() {
   player1 = new Player('one', '✕');
   player2 = new Player('two', '○');
 
+  // Show the turn message and set initial state.
+  turnMsg.classList.remove('is-hidden');
+  turnMsg.textContent = `Player ${player1.name} (${player1.symbol}), it's your turn.`;
+
   // Update the introduction text.
   updateIntro(turn);
 }
@@ -112,6 +118,7 @@ resetter.addEventListener('click', () => { resetGame(); });
 function gameOver() {
   message.textContent = 'Game Over';
   message.classList.remove('is-hidden');
+  turnMsg.classList.add('is-hidden');
 }
 
 // Activates the "Win" result, based on the player.
@@ -121,6 +128,7 @@ function triggerWin(player) {
   message.textContent = `Player ${player.name} wins!`;
   message.classList.add('is-good');
   message.classList.remove('is-hidden');
+  turnMsg.classList.add('is-hidden');
 
   spaces.forEach((space) => {
     space.setAttribute('disabled', '');
@@ -213,6 +221,7 @@ function winCheck(player, arr) {
 function makeMove() {
   // Temporary variable for the player moving.
   let currentPlayer;
+  let nextPlayer;
   // Record the space's row and column.
   const spaceValue = {
     row: this.dataset.row,
@@ -228,8 +237,10 @@ function makeMove() {
   // Check which player has played based on number of turns.
   if ((turn % 2) !== 0) {
     currentPlayer = player1;
+    nextPlayer = player2;
   } else {
     currentPlayer = player2;
+    nextPlayer = player1;
   }
 
   // Add the space played to the player's moves array.
@@ -244,8 +255,14 @@ function makeMove() {
   // Check if the player has won.
   winCheck(currentPlayer, currentPlayer.moves);
 
-  // If the player has not won and all spaces are filled, declare game over.
-  if (turn === spaces.length && !winner) { gameOver(); }
+  if (turn === spaces.length && !winner) {
+    // If the player has not won and all spaces are filled, declare game over
+    // and hide the turn message.
+    gameOver();
+  } else if (!winner) {
+    // If the player has not won, set the turn message to the next player.
+    turnMsg.textContent = `Player ${nextPlayer.name} (${nextPlayer.symbol}), it's your turn.`;
+  }
 }
 
 // Add event listeners for the spaces on the board.
