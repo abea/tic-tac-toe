@@ -1,5 +1,16 @@
 module.exports = function gruntConfig(grunt) {
   grunt.initConfig({
+    scsslint: {
+      allFiles: [
+        './scss/**/*.scss',
+      ],
+      options: {
+        config: './.scss-lint.yml',
+        reporterOutput: null,
+        colorizeOutput: true,
+        exclude: './scss/vendor/**/*.scss',
+      },
+    },
     sass: {
       dist: {
         options: {
@@ -54,7 +65,7 @@ module.exports = function gruntConfig(grunt) {
     watch: {
       scss: {
         files: ['**/*.scss'],
-        tasks: ['sass', 'postcss'],
+        tasks: ['scsslint', 'sass', 'postcss'],
         options: {},
       },
       scripts: {
@@ -65,6 +76,7 @@ module.exports = function gruntConfig(grunt) {
     },
   });
 
+  grunt.loadNpmTasks('grunt-scss-lint');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-eslint');
@@ -73,6 +85,6 @@ module.exports = function gruntConfig(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('scripts', ['eslint', 'babel', 'uglify']);
-  grunt.registerTask('scss', ['sass', 'postcss']);
+  grunt.registerTask('scss', ['scsslint', 'sass', 'postcss']);
   grunt.registerTask('default', ['watch']);
 };

@@ -7,7 +7,7 @@ Here we have a traditional tic-tac-toe game to be played by two people in-browse
 
 ## Project setup
 ### Playing the game
-Simply load the game page in a browser. The game uses only client-side languages that browsers understand, so the browser will take care of everything.
+Simply load the game page (`index.html`) in a browser. The game uses only client-side languages that browsers understand, so the browser will take care of everything.
 
 ### Developer setup
 This app is built with the new ES6 version of Javascript and the Sass CSS pre-processor (SCSS-style). To generate the backwards-compatible Javascript and true CSS, we're using the [Grunt build tool](https://gruntjs.com/). You'll need the [npm](https://www.npmjs.org/), the Node.js package manager, installed on your local environment.
@@ -16,7 +16,10 @@ After downloading game files, run `npm install` in your terminal to install the 
 
 You can also run `grunt scss` to run the CSS build once or `grunt scripts` to run the Javascript build once.
 
-The game Javascript will be tested against [ESLint](eslint.org/) rules set by an included `.eslintrc` file. I also included the `.scss-lint.yml` file for [Sass linting](https://github.com/brigade/scss-lint). It's not included in the Grunt tasks, but developers are encouraged in their editors to use it for code consistency.
+The game Javascript will be tested against [ESLint](eslint.org/) rules set by an included `.eslintrc` file. The SCSS will also be checked with [scss-lint](https://github.com/brigade/scss-lint), a Ruby gem, using the `.scss-lint.yml` file. It adds Ruby as an additional dependency, but in the context of my development process it wasn't anything new. Per the linter instructions:
+
+1. Please make sure you have ruby installed: `ruby -v`
+2. Install the `scss-lint` gem globally by running: `gem update --system && gem install scss-lint`
 
 ## Thought process
 In building the game, two major goals of mine were to write the Javascript very legibly for other developers and to make it as flexible to changes in the game. To the first point, all game functions are broken out individually for reuse as needed. Each function has a limited purpose that I tried to make clear with its name and code documentation. At any point where I saw code replication or problematic legibility, I moved that code into a function or variable, such as with the very verbose `rowIdx/colInx` variables used to find array indexes for a following conditional statement.
