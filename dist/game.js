@@ -11,14 +11,15 @@ var player2 = {};
 var winner = void 0;
 
 // Identify the starter and reset buttons.
-var starter = document.getElementById('starter');
+var starter = document.querySelector('[data-role="starter"]');
 var resetter = document.getElementById('reset');
 // Identify each of the spaces on the board.
-var spaces = document.querySelectorAll('.board__space');
+var board = document.querySelector('[data-role="board"]');
+var spaces = board.querySelectorAll('[data-space]');
 // Identify the board message element.
-var message = document.querySelector('.board__message');
+var message = board.querySelector('[data-role="alert"]');
 // Identify the instructional region.
-var intro = document.getElementById('intro');
+var intro = document.querySelector('[data-role="intro"]');
 // Identify the turn message element.
 var turnMsg = document.getElementById('turn-message');
 
@@ -244,8 +245,8 @@ function makeMove() {
   var nextPlayer = void 0;
   // Record the space's row and column.
   var spaceValue = {
-    row: this.dataset.row,
-    col: this.dataset.col
+    row: this.dataset.space[0],
+    col: this.dataset.space[1]
   };
 
   // Increment the turn one higher.
