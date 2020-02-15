@@ -9,26 +9,29 @@
   <body>
     <header class="l-container">
       <h1>Tic-Tac-Toe</h1>
-      <p id="intro"></p>
+      <p data-role="intro"></p>
     </header>
     <main class="l-container t-center">
-      <button id="starter" class="button-positive">Start</button>
-      <button id="reset" disabled>Reset</button>
-      <p id="turn-message" class="is-hidden t-center"></p>
-      <section id="board" class="board">
-        <button class="board__space" data-row="1" data-col="1" disabled></button>
-        <button class="board__space" data-row="1" data-col="2" disabled></button>
-        <button class="board__space" data-row="1" data-col="3" disabled></button>
-        <button class="board__space" data-row="2" data-col="1" disabled></button>
-        <button class="board__space" data-row="2" data-col="2" disabled></button>
-        <button class="board__space" data-row="2" data-col="3" disabled></button>
-        <button class="board__space" data-row="3" data-col="1" disabled></button>
-        <button class="board__space" data-row="3" data-col="2" disabled></button>
-        <button class="board__space" data-row="3" data-col="3" disabled></button>
-        <div class="board__message is-hidden"></div>
+      <section>
+        <header>
+          <button data-role="starter" class="button-positive">Start</button>
+          <button id="reset" disabled>Reset</button>
+          <p id="turn-message" class="is-hidden t-center"></p>
+        </header>
+        <figure data-role="board" class="board">
+          <button class="board__space" data-space="11" disabled></button>
+          <button class="board__space" data-space="12" disabled></button>
+          <button class="board__space" data-space="13" disabled></button>
+          <button class="board__space" data-space="21" disabled></button>
+          <button class="board__space" data-space="22" disabled></button>
+          <button class="board__space" data-space="23" disabled></button>
+          <button class="board__space" data-space="31" disabled></button>
+          <button class="board__space" data-space="32" disabled></button>
+          <button class="board__space" data-space="33" disabled></button>
+          <p class="board__message is-hidden" role="alert" data-role="alert"></p>
+        </figure>
       </section>
     </main>
-    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Object.assign" charset="utf-8"></script>
     <script src="./dist/game.min.js" charset="utf-8"></script>
   </body>
 </html>
